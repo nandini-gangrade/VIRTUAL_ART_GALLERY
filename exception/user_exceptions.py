@@ -1,5 +1,5 @@
-# In myexceptions/user_exceptions.py
+# In exception/user_exceptions.py
 
 class UserNotFoundException(Exception):
-    """Exception raised when a user is not found."""
-    pass
+    def __init__(self, user_id):
+        super().__init__(f"User with ID {user_id} not found.")

@@ -1,13 +1,18 @@
 # entity/artist.py
 class Artist:
     def __init__(self, artist_id, name, biography, birth_date, nationality, website, contact_information):
-        self._artist_id = artist_id
-        self._name = name
-        self._biography = biography
-        self._birth_date = birth_date
-        self._nationality = nationality
-        self._website = website
-        self._contact_information = contact_information
+        self.artist_id = artist_id
+        self.name = name
+        self.biography = biography
+        self.birth_date = birth_date
+        self.nationality = nationality
+        self.website = website
+        self.contact_information = contact_information
+
+    def __str__(self):
+        return (f"ID: {self.artist_id}, Name: {self.name}, Biography: {self.biography}, "
+                f"BirthDate: {self.birth_date}, Nationality: {self.nationality}, Website: {self.website}, "
+                f"ContactInformation: {self.contact_information}")
 
     # Getters
     @property

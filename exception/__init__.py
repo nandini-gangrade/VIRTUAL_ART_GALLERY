@@ -2,3 +2,7 @@
 
 from .artwork_exceptions import ArtworkNotFoundException
 from .user_exceptions import UserNotFoundException
+from .artist_exceptions import ArtistNotFoundException
+from .gallery_exceptions import GalleryNotFoundException
+from .user_favorite_artwork_exceptions import UserFavoriteArtworkNotFoundException
+from .artwork_gallery_exceptions import ArtworkGalleryNotFoundException

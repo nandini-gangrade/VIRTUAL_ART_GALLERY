@@ -1,11 +1,13 @@
 import unittest
 from unittest.mock import MagicMock
-from dao import VirtualArtGalleryDAOImpl
+from dao import *
 from entity import Artwork
+from util import *
 
-class TestVirtualArtGalleryDAOImpl(unittest.TestCase):
+class TestVirtualArtGallery(unittest.TestCase):
     def setUp(self):
-        self.dao = VirtualArtGalleryDAOImpl("your_connection_string_here")
+        connection_string = DBPropertyUtil.get_connection_string()
+        self.dao = ArtworkDAOImpl(connection_string)
 
     def test_add_artwork(self):
         artwork = Artwork(None, "Test Title", "Test Description", "2024-05-20", "Test Medium", "http://example.com/image.jpg")

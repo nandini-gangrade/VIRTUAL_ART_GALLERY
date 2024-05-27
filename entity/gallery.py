@@ -1,12 +1,16 @@
 # entity/gallery.py
 class Gallery:
     def __init__(self, gallery_id, name, description, location, curator, opening_hours):
-        self._gallery_id = gallery_id
-        self._name = name
-        self._description = description
-        self._location = location
-        self._curator = curator
-        self._opening_hours = opening_hours
+        self.gallery_id = gallery_id
+        self.name = name
+        self.description = description
+        self.location = location
+        self.curator = curator
+        self.opening_hours = opening_hours
+
+    def __str__(self):
+        return (f"ID: {self.gallery_id}, Name: {self.name}, Description: {self.description}, "
+                f"Location: {self.location}, Curator: {self.curator}, Opening Hours: {self.opening_hours}")
 
     # Getters
     @property

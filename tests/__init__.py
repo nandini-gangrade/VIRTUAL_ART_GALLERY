@@ -1,1 +1,1 @@
-from .test_main import TestVirtualArtGalleryDAOImpl
+from .test_main import TestVirtualArtGallery

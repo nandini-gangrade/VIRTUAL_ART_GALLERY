@@ -1,15 +1,20 @@
 # entity/user.py
 class User:
     def __init__(self, user_id, username, password, email, first_name, last_name, date_of_birth, profile_picture, favorite_artworks):
-        self._user_id = user_id
-        self._username = username
-        self._password = password
-        self._email = email
-        self._first_name = first_name
-        self._last_name = last_name
-        self._date_of_birth = date_of_birth
-        self._profile_picture = profile_picture
-        self._favorite_artworks = favorite_artworks
+        self.user_id = user_id
+        self.username = username
+        self.password = password
+        self.email = email
+        self.first_name = first_name
+        self.last_name = last_name
+        self.date_of_birth = date_of_birth
+        self.profile_picture = profile_picture
+        self.favorite_artworks = favorite_artworks  # This should be a list of Artwork IDs
+
+    def __str__(self):
+        return (f"ID: {self.user_id}, Username: {self.username}, Email: {self.email}, First Name: {self.first_name}, "
+                f"Last Name: {self.last_name}, Date of Birth: {self.date_of_birth}, Profile Picture: {self.profile_picture}, "
+                f"Favorite Artworks: {self.favorite_artworks}")
 
     # Getters
     @property

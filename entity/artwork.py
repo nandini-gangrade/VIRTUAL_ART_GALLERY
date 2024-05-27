@@ -1,12 +1,17 @@
 # entity/artwork.py
+
 class Artwork:
     def __init__(self, artwork_id, title, description, creation_date, medium, image_url):
-        self._artwork_id = artwork_id
-        self._title = title
-        self._description = description
-        self._creation_date = creation_date
-        self._medium = medium
-        self._image_url = image_url
+        self.artwork_id = artwork_id
+        self.title = title
+        self.description = description
+        self.creation_date = creation_date
+        self.medium = medium
+        self.image_url = image_url
+
+    def __str__(self):
+        return (f"ID: {self.artwork_id}, Title: {self.title}, Description: {self.description}, "
+                f"Creation Date: {self.creation_date}, Medium: {self.medium}, Image URL: {self.image_url}")
 
     # Getters
     @property
@@ -57,3 +62,9 @@ class Artwork:
     @image_url.setter
     def image_url(self, image_url):
         self._image_url = image_url
+
+
+    # String representation for printing
+    # def __str__(self):
+    #     return (f"ArtworkID: {self.artwork_id}, Title: {self.title}, Description: {self.description}, "
+    #             f"CreationDate: {self.creation_date}, Medium: {self.medium}, ImageURL: {self.image_url}")
