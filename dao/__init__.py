@@ -1,8 +1,3 @@
-# # __init__.py
-
-# from .virtual_art_gallery_dao import IVirtualArtGalleryDAO
-# from .virtual_art_gallery_dao_impl import VirtualArtGalleryDAOImpl
-
 # dao/__init__.py
 
 from .artwork_dao import ArtworkDAOImpl

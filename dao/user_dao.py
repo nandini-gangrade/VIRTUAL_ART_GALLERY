@@ -48,18 +48,21 @@ class UserDAOImpl(UserDAO):
             print(f"Error fetching users: {e}")
             return []
 
-    def add_user(self, user: User) -> bool:
+    def add_user(connection_string, user):
         try:
-            connection = pyodbc.connect(self.connection_string)
+            connection = pyodbc.connect(connection_string)
             cursor = connection.cursor()
             cursor.execute("INSERT INTO [User] (Username, Password, Email, FirstName, LastName, DateOfBirth, ProfilePicture, FavoriteArtworks) VALUES (?, ?, ?, ?, ?, ?, ?, ?)",
-                           user.username, user.password, user.email, user.first_name, user.last_name, user.date_of_birth, user.profile_picture, user.favorite_artworks)
+                        user.username, user.password, user.email, user.first_name, user.last_name, user.date_of_birth, user.profile_picture, ','.join(user.favorite_artworks))
             connection.commit()
             connection.close()
             return True
+        except pyodbc.Error as e:
+            print(f"Database error adding user: {e}")
         except Exception as e:
-            print(f"Error adding user: {e}")
-            return False
+            print(f"Unexpected error adding user: {e}")
+        return False
+
 
     def update_user(self, user: User) -> bool:
         try:

@@ -1,3 +1,4 @@
+# menus/__init__.py
 from .artist_management_menu import ArtistManagementMenu
 from .artwork_management_menu import ArtworkManagementMenu
 from .gallery_management_menu import GalleryManagementMenu

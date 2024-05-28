@@ -6,9 +6,10 @@ from util import *
 from datetime import datetime
 
 class ArtworkManagementMenu:
-    def __init__(self, artwork_dao, user_favorite_artwork_dao, artwork_gallery_dao, gallery_dao):
+    def __init__(self,user_dao, artwork_dao, user_favorite_artwork_dao, artwork_gallery_dao, gallery_dao):
         connection_string = DBPropertyUtil.get_connection_string()
         self.artwork_dao = ArtworkDAOImpl(connection_string)
+        self.user_dao = UserDAOImpl(connection_string)
         self.user_favorite_artwork_dao = UserFavoriteArtworkDAOImpl(connection_string)
         self.artwork_gallery_dao = ArtworkGalleryDAOImpl(connection_string)
         self.gallery_dao = GalleryDAOImpl(connection_string)

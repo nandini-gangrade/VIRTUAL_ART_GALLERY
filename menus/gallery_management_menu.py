@@ -66,10 +66,11 @@ class GalleryManagementMenu:
     def add_gallery(self):
         try:
             name = input("Enter name: ")
+            description = input("Enter description: ")
             location = input("Enter location: ")
-            curator = input("Enter curator: ")
-            opening_hours = input("Enter opening hours: ")
-            gallery = Gallery(None, name, location, curator, opening_hours)
+            curator = input("Enter curator (INT): ")
+            opening_hours = input("Enter opening hours [(HH:MM) AM - HH:MM) PM]: ")
+            gallery = Gallery(None, name, description, location, curator, opening_hours)
             if self.gallery_dao.add_gallery(gallery):
                 print("Gallery added successfully.")
             else:
@@ -87,10 +88,11 @@ class GalleryManagementMenu:
             if existing_gallery:
                 print(f"Existing Name: {existing_gallery.name}")
                 name = input(f"Enter new name (Leave empty to keep '{existing_gallery.name}'): ") or existing_gallery.name
+                description = input(f"Enter new description (Leave empty to keep '{existing_gallery.description}'): ") or existing_gallery.description
                 location = input(f"Enter new location (Leave empty to keep '{existing_gallery.location}'): ") or existing_gallery.location
                 curator = input(f"Enter new curator (Leave empty to keep '{existing_gallery.curator}'): ") or existing_gallery.curator
                 opening_hours = input(f"Enter new opening hours (Leave empty to keep '{existing_gallery.opening_hours}'): ") or existing_gallery.opening_hours
-                updated_gallery = Gallery(existing_gallery.gallery_id, name, location, curator, opening_hours)
+                updated_gallery = Gallery(existing_gallery.gallery_id, name, description, location, curator, opening_hours)
                 success = self.gallery_dao.update_gallery(updated_gallery)
                 if success:
                     print("Gallery updated successfully.")
@@ -110,7 +112,7 @@ class GalleryManagementMenu:
             if matching_galleries:
                 print("Matching galleries:")
                 for gallery in matching_galleries:
-                    print(f"ID: {gallery.gallery_id}, Name: {gallery.name}, Location: {gallery.location}, Curator: {gallery.curator}, Opening Hours: {gallery.opening_hours}")
+                    print(f"ID: {gallery.gallery_id}, Name: {gallery.name}, Description: {gallery.description}, Location: {gallery.location}, Curator: {gallery.curator}, Opening Hours: {gallery.opening_hours}")
                 return matching_galleries
             else:
                 print("No matching galleries found.")

@@ -46,7 +46,7 @@ class ArtistManagementMenu:
             if artists:
                 print("\nAll Artists:")
                 for artist in artists:
-                    print(f"ID: {artist.artist_id}, Name: {artist.name}, Bio: {artist.biography}, Birth Date: {artist.birth_date}, Death Date: {artist.death_date}, Website: {artist.website}, Contact Info: {artist.contact_information}")
+                    print(artist)
             else:
                 print("No artists found.")
         except Exception as e:
@@ -63,16 +63,10 @@ class ArtistManagementMenu:
                 except ValueError:
                     print("Invalid birth date format. Please enter the date in YYYY-MM-DD format.")
                     return
-            death_date = input("Enter death date (YYYY-MM-DD): ")
-            if death_date:
-                try:
-                    datetime.strptime(death_date, '%Y-%m-%d')
-                except ValueError:
-                    print("Invalid death date format. Please enter the date in YYYY-MM-DD format.")
-                    return
+            nationality = input("Enter Nationality ")
             website = input("Enter website: ")
             contact_information = input("Enter contact information: ")
-            artist = Artist(None, name, bio, birth_date, death_date, website, contact_information)
+            artist = Artist(None, name, bio, birth_date, nationality, website, contact_information)
             if self.artist_dao.add_artist(artist):
                 print("Artist added successfully.")
             else:
@@ -98,16 +92,10 @@ class ArtistManagementMenu:
                     except ValueError:
                         print("Invalid birth date format. Please enter the date in YYYY-MM-DD format.")
                         return
-                death_date = input(f"Enter new death date (Leave empty to keep '{existing_artist.death_date}'): ") or existing_artist.death_date
-                if death_date != existing_artist.death_date:
-                    try:
-                        datetime.strptime(death_date, '%Y-%m-%d')
-                    except ValueError:
-                        print("Invalid death date format. Please enter the date in YYYY-MM-DD format.")
-                        return
+                nationality = input(f"Enter new nationality (Leave empty to keep '{existing_artist.nationality}'): ") or existing_artist.nationality
                 website = input(f"Enter new website (Leave empty to keep '{existing_artist.website}'): ") or existing_artist.website
                 contact_info = input(f"Enter new contact information (Leave empty to keep '{existing_artist.contact_information}'): ") or existing_artist.contact_information
-                updated_artist = Artist(existing_artist.artist_id, name, bio, birth_date, death_date, website, contact_info)
+                updated_artist = Artist(existing_artist.artist_id, name, bio, birth_date, nationality, website, contact_info)
                 success = self.artist_dao.update_artist(updated_artist)
                 if success:
                     print("Artist updated successfully.")

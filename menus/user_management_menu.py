@@ -6,7 +6,7 @@ from util import *
 from datetime import datetime
 
 class UserManagementMenu:
-    def __init__(self, user_dao, user_favorite_artwork_dao):
+    def __init__(self, user_dao, artwork_dao, user_favorite_artwork_dao):
         connection_string = DBPropertyUtil.get_connection_string()
         self.user_dao = UserDAOImpl(connection_string)
         self.artwork_dao = ArtworkDAOImpl(connection_string)
@@ -65,19 +65,24 @@ class UserManagementMenu:
 
     def add_user(self):
         try:
+            username = input("Enter Username: ")
+            password = input("Enter Password: ")
             email = input("Enter email: ")
             first_name = input("Enter first name: ")
             last_name = input("Enter last name: ")
             date_of_birth = input("Enter date of birth (YYYY-MM-DD): ")
             profile_picture = input("Enter profile picture URL: ")
-            user = User(None, email, first_name, last_name, date_of_birth, profile_picture, [])
+            user = User(None, username, password, email, first_name, last_name, date_of_birth, profile_picture, [])
+            
             if self.user_dao.add_user(user):
                 print("User added successfully.")
             else:
                 print("Failed to add user.")
+        except pyodbc.Error as e:
+            print(f"Database error adding user: {e}")
         except Exception as e:
-            print(f"Error adding user: {e}")
-
+            print(f"Unexpected error adding user: {e}")
+    
     def update_user(self):
         try:
             matching_users = self.search_users()
